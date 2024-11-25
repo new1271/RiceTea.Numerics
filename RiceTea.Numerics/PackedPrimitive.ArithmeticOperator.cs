@@ -57,18 +57,6 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static PackedPrimitive<T> operator *(PackedPrimitive<T> _base, int value)
-        {
-            if (_floatingPoint)
-                throw new InvalidOperationException(typeof(T).FullName + " cannot do 'Or' operation");
-            IL.Push(_base._value);
-            IL.Push(value);
-            IL.Emit.And();
-            IL.Emit.Newobj(MethodRef.Constructor(typeof(PackedPrimitive<T>), typeof(T)));
-            return IL.Return<PackedPrimitive<T>>();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PackedPrimitive<T> operator <<(PackedPrimitive<T> _base, int value)
         {
             IL.Push(_base._value);

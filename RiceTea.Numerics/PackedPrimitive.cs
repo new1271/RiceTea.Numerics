@@ -23,7 +23,7 @@ namespace RiceTea.Numerics
         public T Value
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _value;
+            readonly get => _value;
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
@@ -32,29 +32,33 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public PackedPrimitive(T value)
+        public PackedPrimitive()
         {
             if (_throwException)
                 throw new InvalidOperationException(typeof(T).FullName + "is not a primitive type!");
+            _value = default;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public PackedPrimitive(T value) : this()
+        {
             _value = value;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public unsafe PackedPrimitive(T* pointer)
+        public unsafe PackedPrimitive(T* pointer) : this()
         {
-            if (_throwException)
-                throw new InvalidOperationException(typeof(T).FullName + "is not a primitive type!");
             _value = *pointer;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int CompareTo(PackedPrimitive<T> other)
+        public readonly int CompareTo(PackedPrimitive<T> other)
         {
             return (int)(this - other);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int CompareTo(T other)
+        public readonly int CompareTo(T other)
         {
             return (int)(this - other);
         }
@@ -72,13 +76,13 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(PackedPrimitive<T> other)
+        public readonly bool Equals(PackedPrimitive<T> other)
         {
             return _value.Equals(other._value);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(T other)
+        public readonly bool Equals(T other)
         {
             return _value.Equals(other);
         }
@@ -95,12 +99,12 @@ namespace RiceTea.Numerics
             return false;
         }
 
-        public override int GetHashCode()
+        public override readonly int GetHashCode()
         {
             return _value.GetHashCode();
         }
 
-        public override string ToString()
+        public override readonly string ToString()
         {
             return _value.ToString();
         }

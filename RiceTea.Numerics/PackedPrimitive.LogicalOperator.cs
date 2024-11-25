@@ -21,7 +21,8 @@ namespace RiceTea.Numerics
             IL.Push(a._value);
             IL.Push(b._value);
             IL.Emit.Ceq();
-            IL.Emit.Not();
+            IL.Push(0);
+            IL.Emit.Ceq();
             return IL.Return<bool>();
         }
 

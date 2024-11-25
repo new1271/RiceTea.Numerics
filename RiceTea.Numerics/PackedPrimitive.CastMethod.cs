@@ -6,42 +6,48 @@ namespace RiceTea.Numerics
     partial struct PackedPrimitive<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool ToBoolean() => (bool)this;
+        public readonly bool ToBoolean() => (bool)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public char ToChar() => (char)this;
+        public readonly char ToChar() => (char)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public sbyte ToSByte() => (sbyte)this;
+        public readonly sbyte ToSByte() => (sbyte)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public byte ToByte() => (byte)this;
+        public readonly byte ToByte() => (byte)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public short ToInt16() => (short)this;
+        public readonly short ToInt16() => (short)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ushort ToUInt16() => (ushort)this;
+        public readonly ushort ToUInt16() => (ushort)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int ToInt32() => (int)this;
+        public readonly int ToInt32() => (int)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public uint ToUInt32() => (uint)this;
+        public readonly uint ToUInt32() => (uint)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public long ToInt64() => (long)this;
+        public readonly long ToInt64() => (long)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ulong ToUInt64() => (ulong)this;
+        public readonly ulong ToUInt64() => (ulong)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public float ToSingle() => (float)this;
+        public readonly IntPtr ToIntPtr() => (IntPtr)this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public double ToDouble() => (double)this;
+        public readonly UIntPtr ToUIntPtr() => (UIntPtr)this;
 
-        TypeCode IConvertible.GetTypeCode() => ((IConvertible)_value).GetTypeCode();
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly float ToSingle() => (float)this;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public readonly double ToDouble() => (double)this;
+
+        readonly TypeCode IConvertible.GetTypeCode() => ((IConvertible)_value).GetTypeCode();
 
         bool IConvertible.ToBoolean(IFormatProvider provider) => provider is null ? ToBoolean() : Convert.ToBoolean(_value, provider);
 
@@ -67,12 +73,12 @@ namespace RiceTea.Numerics
 
         double IConvertible.ToDouble(IFormatProvider provider) => provider is null ? ToDouble() : Convert.ToDouble(_value, provider);
 
-        decimal IConvertible.ToDecimal(IFormatProvider provider) => Convert.ToDecimal(_value, provider);
+        readonly decimal IConvertible.ToDecimal(IFormatProvider provider) => Convert.ToDecimal(_value, provider);
 
-        DateTime IConvertible.ToDateTime(IFormatProvider provider) => Convert.ToDateTime(_value, provider);
+        readonly DateTime IConvertible.ToDateTime(IFormatProvider provider) => Convert.ToDateTime(_value, provider);
 
-        string IConvertible.ToString(IFormatProvider provider) => provider is null ? _value.ToString() : Convert.ToString(_value, provider);
+        readonly string IConvertible.ToString(IFormatProvider provider) => provider is null ? _value.ToString() : Convert.ToString(_value, provider);
 
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)_value).ToType(conversionType, provider);
+        readonly object IConvertible.ToType(Type conversionType, IFormatProvider provider) => ((IConvertible)_value).ToType(conversionType, provider);
     }
 }
