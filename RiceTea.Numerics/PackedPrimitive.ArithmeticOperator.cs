@@ -88,6 +88,22 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static PackedPrimitive<T> operator +(PackedPrimitive<T> value)
+        {
+            IL.Push(value);
+            return IL.Return<PackedPrimitive<T>>();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static PackedPrimitive<T> operator -(PackedPrimitive<T> value)
+        {
+            IL.Push(value._value);
+            IL.Emit.Neg();
+            IL.Emit.Newobj(MethodRef.Constructor(typeof(PackedPrimitive<T>), typeof(T)));
+            return IL.Return<PackedPrimitive<T>>();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PackedPrimitive<T> operator +(PackedPrimitive<T> a, PackedPrimitive<T> b)
         {
             IL.Push(a._value);

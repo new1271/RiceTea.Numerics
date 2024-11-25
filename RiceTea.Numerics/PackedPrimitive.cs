@@ -23,7 +23,7 @@ namespace RiceTea.Numerics
         public T Value
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            readonly get => _value;
+            get => _value;
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
@@ -52,13 +52,13 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly int CompareTo(PackedPrimitive<T> other)
+        public int CompareTo(PackedPrimitive<T> other)
         {
             return (int)(this - other);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly int CompareTo(T other)
+        public int CompareTo(T other)
         {
             return (int)(this - other);
         }
@@ -76,13 +76,13 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly bool Equals(PackedPrimitive<T> other)
+        public bool Equals(PackedPrimitive<T> other)
         {
             return _value.Equals(other._value);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly bool Equals(T other)
+        public bool Equals(T other)
         {
             return _value.Equals(other);
         }
@@ -99,12 +99,12 @@ namespace RiceTea.Numerics
             return false;
         }
 
-        public override readonly int GetHashCode()
+        public override int GetHashCode()
         {
             return _value.GetHashCode();
         }
 
-        public override readonly string ToString()
+        public override string ToString()
         {
             return _value.ToString();
         }
