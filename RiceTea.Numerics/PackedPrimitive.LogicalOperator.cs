@@ -46,6 +46,29 @@ namespace RiceTea.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >=(PackedPrimitive<T> a, PackedPrimitive<T> b)
+        {
+            if (_unsigned)
+            {
+                IL.Push(a._value);
+                IL.Push(b._value);
+                IL.Emit.Clt_Un();
+                IL.Push(0);
+                IL.Emit.Ceq();
+                return IL.Return<bool>();
+            }
+            else
+            {
+                IL.Push(a._value);
+                IL.Push(b._value);
+                IL.Emit.Clt();
+                IL.Push(0);
+                IL.Emit.Ceq();
+                return IL.Return<bool>();
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator <(PackedPrimitive<T> a, PackedPrimitive<T> b)
         {
             if (_unsigned)
@@ -60,6 +83,29 @@ namespace RiceTea.Numerics
                 IL.Push(a._value);
                 IL.Push(b._value);
                 IL.Emit.Clt();
+                return IL.Return<bool>();
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <=(PackedPrimitive<T> a, PackedPrimitive<T> b)
+        {
+            if (_unsigned)
+            {
+                IL.Push(a._value);
+                IL.Push(b._value);
+                IL.Emit.Cgt_Un();
+                IL.Push(0);
+                IL.Emit.Ceq();
+                return IL.Return<bool>();
+            }
+            else
+            {
+                IL.Push(a._value);
+                IL.Push(b._value);
+                IL.Emit.Cgt();
+                IL.Push(0);
+                IL.Emit.Ceq();
                 return IL.Return<bool>();
             }
         }

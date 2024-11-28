@@ -1,9 +1,6 @@
-﻿using InlineIL;
-
-using RiceTea.Numerics.Internal;
+﻿using RiceTea.Numerics.Internal;
 
 using System;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -12,7 +9,6 @@ namespace RiceTea.Numerics
     [StructLayout(LayoutKind.Sequential)]
     public partial struct PackedPrimitive<T> : IComparable, IConvertible, IComparable<T>, IEquatable<T>, 
         IComparable<PackedPrimitive<T>>, IEquatable<PackedPrimitive<T>> 
-        where T : unmanaged
     {
         private static readonly bool _unsigned = PackedPrimitiveHelper.IsUnsignedIntegerType(typeof(T));
         private static readonly bool _floatingPoint = PackedPrimitiveHelper.IsFloatingPointType(typeof(T));
